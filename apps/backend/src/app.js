@@ -20,6 +20,14 @@ import passport from './config/passport.js';
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.json({
+    message: 'RAVIVE API is running',
+    health: '/health',
+    version: '1.0'
+  });
+});
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
