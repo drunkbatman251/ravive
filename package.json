@@ -1,0 +1,21 @@
+{
+  "name": "ravive",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/mobile",
+    "apps/backend"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm run dev -w apps/backend\" \"npm run start -w apps/mobile\"",
+    "start:mobile": "npm run start -w apps/mobile",
+    "start:backend": "npm run dev -w apps/backend",
+    "build": "npm run build -w apps/backend",
+    "lint": "npm run lint -w apps/backend && npm run lint -w apps/mobile"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "metro-runtime": "^0.83.5",
+    "react-native-worklets": "^0.5.1"
+  }
+}

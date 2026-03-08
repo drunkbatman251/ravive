@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320">
+  <rect width="960" height="320" fill="#fff8f1"/>
+  <text x="30" y="42" font-family="Arial" font-size="28" fill="#6a4a2a" font-weight="700">Option C: Friendly Mascot Coach (highly playful)</text>
+
+  <g transform="translate(108,92)">
+    <ellipse cx="44" cy="190" rx="64" ry="9" fill="#efd2b2"/>
+    <circle cx="44" cy="28" r="22" fill="#ffd7b8"/>
+    <rect x="28" y="50" width="32" height="66" rx="16" fill="#ff9a66"/>
+    <line x1="29" y1="67" x2="4" y2="114" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="59" y1="67" x2="84" y2="114" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="35" y1="114" x2="22" y2="164" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="53" y1="114" x2="66" y2="164" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="22" y1="164" x2="20" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+    <line x1="66" y1="164" x2="68" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(415,102)">
+    <ellipse cx="44" cy="190" rx="64" ry="9" fill="#efd2b2"/>
+    <circle cx="44" cy="28" r="22" fill="#ffd7b8"/>
+    <rect x="28" y="53" width="32" height="60" rx="16" fill="#ff9a66" transform="rotate(10 44 83)"/>
+    <line x1="29" y1="67" x2="8" y2="108" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="59" y1="67" x2="80" y2="108" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="36" y1="114" x2="6" y2="152" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="52" y1="114" x2="82" y2="152" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="6" y1="152" x2="13" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+    <line x1="82" y1="152" x2="75" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(722,92)">
+    <ellipse cx="44" cy="190" rx="64" ry="9" fill="#efd2b2"/>
+    <circle cx="44" cy="28" r="22" fill="#ffd7b8"/>
+    <rect x="28" y="50" width="32" height="66" rx="16" fill="#ff9a66"/>
+    <line x1="29" y1="67" x2="4" y2="114" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="59" y1="67" x2="84" y2="114" stroke="#ffcba9" stroke-width="10" stroke-linecap="round"/>
+    <line x1="35" y1="114" x2="22" y2="164" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="53" y1="114" x2="66" y2="164" stroke="#56a6ff" stroke-width="12" stroke-linecap="round"/>
+    <line x1="22" y1="164" x2="20" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+    <line x1="66" y1="164" x2="68" y2="190" stroke="#2f6ad0" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <text x="108" y="302" font-family="Arial" font-size="20" fill="#7b5b3a" font-weight="700">Cute Start</text>
+  <text x="407" y="302" font-family="Arial" font-size="20" fill="#7b5b3a" font-weight="700">Cute Squat</text>
+  <text x="720" y="302" font-family="Arial" font-size="20" fill="#7b5b3a" font-weight="700">Cute Finish</text>
+</svg>

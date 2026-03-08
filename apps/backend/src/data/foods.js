@@ -1,0 +1,21 @@
+export const foods = [
+  { name: 'Roti', category: 'Indian Meal', calories: 120, protein: 3.1, carbs: 22, fat: 2.5, fiber: 3.2, vitamins: 'B1,B3', minerals: 'Iron,Magnesium' },
+  { name: 'Dal', category: 'Indian Meal', calories: 180, protein: 11, carbs: 24, fat: 4, fiber: 8, vitamins: 'Folate,B6', minerals: 'Iron,Potassium' },
+  { name: 'Rajma', category: 'Indian Meal', calories: 220, protein: 13, carbs: 35, fat: 2.2, fiber: 11, vitamins: 'B9', minerals: 'Iron,Calcium' },
+  { name: 'Chole', category: 'Indian Meal', calories: 230, protein: 12, carbs: 32, fat: 6, fiber: 9, vitamins: 'B6', minerals: 'Manganese,Iron' },
+  { name: 'Paneer', category: 'Indian Meal', calories: 265, protein: 18, carbs: 4, fat: 20, fiber: 0, vitamins: 'B12,D', minerals: 'Calcium,Phosphorus' },
+  { name: 'Rice', category: 'Indian Meal', calories: 206, protein: 4.2, carbs: 45, fat: 0.4, fiber: 0.6, vitamins: 'B1', minerals: 'Selenium,Manganese' },
+  { name: 'Poha', category: 'Indian Breakfast', calories: 250, protein: 5, carbs: 46, fat: 5, fiber: 3.5, vitamins: 'B1,C', minerals: 'Iron' },
+  { name: 'Upma', category: 'Indian Breakfast', calories: 220, protein: 6, carbs: 35, fat: 6, fiber: 4, vitamins: 'B Complex', minerals: 'Iron,Magnesium' },
+  { name: 'Idli', category: 'Indian Breakfast', calories: 58, protein: 2, carbs: 12, fat: 0.4, fiber: 0.8, vitamins: 'B vitamins', minerals: 'Calcium' },
+  { name: 'Dosa', category: 'Indian Breakfast', calories: 168, protein: 4, carbs: 28, fat: 4.5, fiber: 2.2, vitamins: 'B vitamins', minerals: 'Iron' },
+  { name: 'Sambar', category: 'Indian Meal', calories: 130, protein: 5, carbs: 18, fat: 4, fiber: 4.5, vitamins: 'A,C', minerals: 'Potassium' },
+  { name: 'Khichdi', category: 'Indian Meal', calories: 210, protein: 8, carbs: 35, fat: 4, fiber: 5, vitamins: 'B Complex', minerals: 'Iron,Magnesium' },
+  { name: 'Paratha', category: 'Indian Meal', calories: 260, protein: 6, carbs: 30, fat: 12, fiber: 3.2, vitamins: 'B1', minerals: 'Iron' },
+  { name: 'Sabzi', category: 'Indian Meal', calories: 140, protein: 4, carbs: 14, fat: 7, fiber: 4.8, vitamins: 'A,C,K', minerals: 'Potassium' },
+  { name: 'Samosa', category: 'Street Food', calories: 262, protein: 5, carbs: 31, fat: 13, fiber: 3, vitamins: 'B1', minerals: 'Sodium,Iron' },
+  { name: 'Kachori', category: 'Street Food', calories: 280, protein: 6, carbs: 28, fat: 15, fiber: 2.5, vitamins: 'B vitamins', minerals: 'Iron' },
+  { name: 'Jalebi', category: 'Street Food', calories: 300, protein: 1.5, carbs: 45, fat: 12, fiber: 0, vitamins: 'Trace', minerals: 'Calcium' },
+  { name: 'Pani Puri', category: 'Street Food', calories: 180, protein: 4, carbs: 32, fat: 4, fiber: 3, vitamins: 'C', minerals: 'Sodium' },
+  { name: 'Bhel Puri', category: 'Street Food', calories: 170, protein: 4.5, carbs: 28, fat: 4.2, fiber: 4, vitamins: 'C', minerals: 'Iron' }
+];

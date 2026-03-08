@@ -1,0 +1,46 @@
+2026-03-07 10:12:35.593 IST [24301] LOG:  starting PostgreSQL 16.13 (Postgres.app) on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2026-03-07 10:12:35.630 IST [24301] LOG:  listening on IPv6 address "::1", port 5432
+2026-03-07 10:12:35.630 IST [24301] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-03-07 10:12:35.631 IST [24301] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2026-03-07 10:12:35.635 IST [24368] LOG:  database system was shut down at 2026-03-07 10:08:29 IST
+2026-03-07 10:12:35.641 IST [24301] LOG:  database system is ready to accept connections
+2026-03-07 10:17:35.637 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 10:19:16.459 IST [24366] LOG:  checkpoint complete: wrote 1001 buffers (6.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=100.812 s, sync=0.006 s, total=100.824 s; sync files=365, longest=0.001 s, average=0.001 s; distance=4740 kB, estimate=4740 kB; lsn=0/19B0C60, redo lsn=0/19B0C28
+2026-03-07 10:27:35.461 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 10:27:36.685 IST [24366] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.223 s, sync=0.001 s, total=1.225 s; sync files=11, longest=0.001 s, average=0.001 s; distance=14 kB, estimate=4267 kB; lsn=0/19B4580, redo lsn=0/19B4548
+2026-03-07 10:52:35.700 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 10:52:43.309 IST [24366] LOG:  checkpoint complete: wrote 76 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.601 s, sync=0.004 s, total=7.610 s; sync files=53, longest=0.001 s, average=0.001 s; distance=280 kB, estimate=3869 kB; lsn=0/19FA750, redo lsn=0/19FA718
+2026-03-07 11:13:14.796 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 11:13:18.082 IST [24366] LOG:  checkpoint complete: wrote 33 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.278 s, sync=0.002 s, total=3.288 s; sync files=17, longest=0.001 s, average=0.001 s; distance=106 kB, estimate=3492 kB; lsn=0/1A15280, redo lsn=0/1A15248
+2026-03-07 12:04:41.943 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 12:04:50.363 IST [24366] LOG:  checkpoint complete: wrote 84 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=8.412 s, sync=0.003 s, total=8.422 s; sync files=14, longest=0.001 s, average=0.001 s; distance=740 kB, estimate=3217 kB; lsn=0/1ACE5F0, redo lsn=0/1ACE5B8
+2026-03-07 12:09:41.926 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 12:09:43.778 IST [24366] LOG:  checkpoint complete: wrote 19 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.843 s, sync=0.002 s, total=1.853 s; sync files=15, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=2897 kB; lsn=0/1AD2F78, redo lsn=0/1AD2F40
+2026-03-07 14:08:35.044 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 14:08:35.969 IST [24366] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.916 s, sync=0.004 s, total=0.927 s; sync files=10, longest=0.002 s, average=0.001 s; distance=11 kB, estimate=2609 kB; lsn=0/1AD5ED8, redo lsn=0/1AD5EA0
+2026-03-07 14:13:35.972 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 14:13:36.901 IST [24366] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.920 s, sync=0.002 s, total=0.931 s; sync files=10, longest=0.001 s, average=0.001 s; distance=12 kB, estimate=2349 kB; lsn=0/1AD8F68, redo lsn=0/1AD8F30
+2026-03-07 14:18:35.908 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 14:18:41.101 IST [24366] LOG:  checkpoint complete: wrote 52 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.183 s, sync=0.004 s, total=5.199 s; sync files=40, longest=0.001 s, average=0.001 s; distance=216 kB, estimate=2136 kB; lsn=0/1B0F030, redo lsn=0/1B0EFF8
+2026-03-07 14:23:35.104 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 14:23:37.258 IST [24366] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.142 s, sync=0.007 s, total=2.155 s; sync files=18, longest=0.001 s, average=0.001 s; distance=28 kB, estimate=1925 kB; lsn=0/1B16320, redo lsn=0/1B162E8
+2026-03-07 19:09:36.654 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 19:09:44.533 IST [24366] LOG:  checkpoint complete: wrote 78 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.853 s, sync=0.011 s, total=7.881 s; sync files=65, longest=0.001 s, average=0.001 s; distance=265 kB, estimate=1759 kB; lsn=0/1B58790, redo lsn=0/1B58758
+2026-03-07 20:44:36.569 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 20:44:41.905 IST [24366] LOG:  checkpoint complete: wrote 53 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.318 s, sync=0.009 s, total=5.337 s; sync files=40, longest=0.001 s, average=0.001 s; distance=219 kB, estimate=1605 kB; lsn=0/1B8F600, redo lsn=0/1B8F5C8
+2026-03-07 20:49:36.906 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 20:49:39.170 IST [24366] LOG:  checkpoint complete: wrote 23 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.254 s, sync=0.002 s, total=2.264 s; sync files=19, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=1445 kB; lsn=0/1B91B68, redo lsn=0/1B91B30
+2026-03-07 22:44:36.203 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 22:44:38.046 IST [24366] LOG:  checkpoint complete: wrote 19 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.829 s, sync=0.004 s, total=1.844 s; sync files=18, longest=0.001 s, average=0.001 s; distance=11 kB, estimate=1302 kB; lsn=0/1B947B0, redo lsn=0/1B94778
+2026-03-07 23:09:36.053 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 23:09:37.088 IST [24366] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.026 s, sync=0.003 s, total=1.036 s; sync files=10, longest=0.001 s, average=0.001 s; distance=25 kB, estimate=1174 kB; lsn=0/1B9AE80, redo lsn=0/1B9AE48
+2026-03-07 23:29:36.094 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 23:29:40.162 IST [24366] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.060 s, sync=0.003 s, total=4.069 s; sync files=31, longest=0.001 s, average=0.001 s; distance=195 kB, estimate=1076 kB; lsn=0/1BCBD60, redo lsn=0/1BCBD28
+2026-03-07 23:39:36.165 IST [24366] LOG:  checkpoint starting: time
+2026-03-07 23:39:37.118 IST [24366] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.929 s, sync=0.003 s, total=0.953 s; sync files=10, longest=0.001 s, average=0.001 s; distance=18 kB, estimate=970 kB; lsn=0/1BD0810, redo lsn=0/1BD07D8
+2026-03-08 01:49:41.992 IST [24301] LOG:  received smart shutdown request
+2026-03-08 01:49:41.997 IST [24301] LOG:  background worker "logical replication launcher" (PID 24383) exited with exit code 1
+2026-03-08 01:49:41.998 IST [24366] LOG:  shutting down
+2026-03-08 01:49:42.001 IST [24366] LOG:  checkpoint starting: shutdown immediate
+2026-03-08 01:49:42.015 IST [24366] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.001 s, total=0.018 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=873 kB; lsn=0/1BD08C0, redo lsn=0/1BD08C0
+2026-03-08 01:49:42.030 IST [24301] LOG:  database system is shut down
