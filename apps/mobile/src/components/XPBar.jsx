@@ -1,21 +1,30 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors, gradients } from '../theme/colors';
 
 export function XPBar({ xpIntoLevel = 0, xpToNextLevel = 100, level = 1 }) {
   const ratio = Math.max(0, Math.min(1, xpIntoLevel / Math.max(1, xpToNextLevel)));
-  const progress = useSharedValue(ratio);
-  const glow = useSharedValue(0.18);
+  const progress = useRef(new Animated.Value(ratio)).current;
+  const glow = useRef(new Animated.Value(0.18)).current;
 
   useEffect(() => {
-    progress.value = withTiming(ratio, { duration: 500 });
-    glow.value = withSequence(withTiming(0.6, { duration: 180 }), withTiming(0.2, { duration: 420 }));
-  }, [ratio]);
+    Animated.timing(progress, {
+      toValue: ratio,
+      duration: 500,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: false
+    }).start();
+    Animated.sequence([
+      Animated.timing(glow, { toValue: 0.6, duration: 180, useNativeDriver: false }),
+      Animated.timing(glow, { toValue: 0.2, duration: 420, useNativeDriver: false })
+    ]).start();
+  }, [glow, progress, ratio]);
 
-  const fillStyle = useAnimatedStyle(() => ({ width: `${progress.value * 100}%` }));
-  const glowStyle = useAnimatedStyle(() => ({ opacity: glow.value }));
+  const width = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%']
+  });
 
   return (
     <View>
@@ -24,8 +33,8 @@ export function XPBar({ xpIntoLevel = 0, xpToNextLevel = 100, level = 1 }) {
         <Text style={styles.value}>{xpIntoLevel}/{xpToNextLevel} XP</Text>
       </View>
       <View style={styles.track}>
-        <Animated.View style={[styles.glow, glowStyle]} />
-        <Animated.View style={[styles.fill, fillStyle]}>
+        <Animated.View style={[styles.glow, { opacity: glow }]} />
+        <Animated.View style={[styles.fill, { width }]}>
           <LinearGradient colors={gradients.xp} style={StyleSheet.absoluteFill} />
         </Animated.View>
       </View>

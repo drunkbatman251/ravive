@@ -1,36 +1,41 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { Animated, Pressable, StyleSheet, Text } from 'react-native';
 import { colors } from '../theme/colors';
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
 export function BouncyCard({ icon, label, caption, onPress, selected = false, tone = '#8EE3C0' }) {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }]
-  }));
+  const scale = React.useRef(new Animated.Value(1)).current;
 
   const onPressIn = () => {
-    scale.value = withSpring(0.95, { damping: 12, stiffness: 260 });
+    Animated.spring(scale, {
+      toValue: 0.95,
+      useNativeDriver: true,
+      friction: 5,
+      tension: 180
+    }).start();
   };
 
   const onPressOut = () => {
-    scale.value = withSpring(1, { damping: 10, stiffness: 200 });
+    Animated.spring(scale, {
+      toValue: 1,
+      useNativeDriver: true,
+      friction: 5,
+      tension: 150
+    }).start();
   };
 
   return (
-    <AnimatedPressable
-      onPress={onPress}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
-      style={[styles.card, animatedStyle, selected ? { borderColor: tone, backgroundColor: `${tone}33` } : null]}
-    >
-      <Text style={styles.icon}>{icon}</Text>
-      <Text style={styles.label}>{label}</Text>
-      {caption ? <Text style={styles.caption}>{caption}</Text> : null}
-    </AnimatedPressable>
+    <Animated.View style={{ transform: [{ scale }] }}>
+      <Pressable
+        onPress={onPress}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        style={[styles.card, selected ? { borderColor: tone, backgroundColor: `${tone}33` } : null]}
+      >
+        <Text style={styles.icon}>{icon}</Text>
+        <Text style={styles.label}>{label}</Text>
+        {caption ? <Text style={styles.caption}>{caption}</Text> : null}
+      </Pressable>
+    </Animated.View>
   );
 }
 

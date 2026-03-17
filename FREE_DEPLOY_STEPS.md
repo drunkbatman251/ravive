@@ -62,11 +62,26 @@ npx expo start --tunnel
 
 Now your friend in another city can use same QR/link while your Expo is running.
 
-## 5) Truly independent app without your Mac running (free-ish constraints)
-- Backend is now independent (Render + Neon).
-- Frontend still needs one of:
-  1. Expo Go session for development
-  2. Web/PWA hosting (free static host) for always-on use
+## 5) Truly independent use without your Mac running
+- Backend is already independent on Render + Neon.
+- Frontend must also be deployed.
+- This repo is prepared for free web deployment from `apps/mobile`.
+
+### Vercel
+1. Go to https://vercel.com and import the GitHub repo.
+2. Set **Root Directory** to `apps/mobile`.
+3. Add env var:
+   - `EXPO_PUBLIC_API_URL=https://YOUR_RENDER_URL/api`
+4. Vercel will use `apps/mobile/vercel.json`.
+5. Deploy and share the generated public URL.
+
+### Netlify
+1. Go to https://netlify.com and import the GitHub repo.
+2. Set **Base directory** to `apps/mobile`.
+3. Add env var:
+   - `EXPO_PUBLIC_API_URL=https://YOUR_RENDER_URL/api`
+4. Netlify will use `apps/mobile/netlify.toml`.
+5. Deploy and share the generated public URL.
 
 ## 6) Optional EAS setup (prepared)
 Login and initialize:

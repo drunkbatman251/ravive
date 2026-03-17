@@ -1,17 +1,6 @@
-import React, { useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Animated, {
-  FadeIn,
-  FadeOut,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withRepeat,
-  withSequence,
-  withSpring,
-  withTiming
-} from 'react-native-reanimated';
 import { clearMascotEvent } from '../store/appSlice';
 import { colors } from '../theme/colors';
 import {
@@ -44,39 +33,52 @@ function BearFace({ mode = 'happy' }) {
 }
 
 function FloatingXp({ xp }) {
-  const y = useSharedValue(12);
-  const opacity = useSharedValue(0);
+  const y = useRef(new Animated.Value(12)).current;
+  const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    opacity.value = withSequence(withTiming(1, { duration: 150 }), withDelay(700, withTiming(0, { duration: 300 })));
-    y.value = withTiming(-24, { duration: 900 });
-  }, [xp]);
+    y.setValue(12);
+    opacity.setValue(0);
+    Animated.parallel([
+      Animated.sequence([
+        Animated.timing(opacity, { toValue: 1, duration: 150, useNativeDriver: true }),
+        Animated.delay(700),
+        Animated.timing(opacity, { toValue: 0, duration: 300, useNativeDriver: true })
+      ]),
+      Animated.timing(y, {
+        toValue: -24,
+        duration: 900,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true
+      })
+    ]).start();
+  }, [opacity, xp, y]);
 
-  const style = useAnimatedStyle(() => ({ transform: [{ translateY: y.value }], opacity: opacity.value }));
-
-  return <Animated.Text style={[styles.floatingXp, style]}>{xp > 0 ? `+${xp} XP` : `${xp} XP`}</Animated.Text>;
+  return (
+    <Animated.Text style={[styles.floatingXp, { opacity, transform: [{ translateY: y }] }]}>
+      {xp > 0 ? `+${xp} XP` : `${xp} XP`}
+    </Animated.Text>
+  );
 }
 
 function ConfettiBurst() {
-  const p1 = useSharedValue(0);
-  const p2 = useSharedValue(0);
-  const p3 = useSharedValue(0);
+  const p1 = useRef(new Animated.Value(0)).current;
+  const p2 = useRef(new Animated.Value(0)).current;
+  const p3 = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    p1.value = withTiming(1, { duration: 900 });
-    p2.value = withTiming(1, { duration: 900 });
-    p3.value = withTiming(1, { duration: 900 });
-  }, []);
-
-  const s1 = useAnimatedStyle(() => ({ opacity: 1 - p1.value, transform: [{ translateY: p1.value * -70 }, { translateX: p1.value * -40 }] }));
-  const s2 = useAnimatedStyle(() => ({ opacity: 1 - p2.value, transform: [{ translateY: p2.value * -85 }, { translateX: p2.value * 20 }] }));
-  const s3 = useAnimatedStyle(() => ({ opacity: 1 - p3.value, transform: [{ translateY: p3.value * -65 }, { translateX: p3.value * 55 }] }));
+    Animated.parallel([
+      Animated.timing(p1, { toValue: 1, duration: 900, useNativeDriver: true }),
+      Animated.timing(p2, { toValue: 1, duration: 900, useNativeDriver: true }),
+      Animated.timing(p3, { toValue: 1, duration: 900, useNativeDriver: true })
+    ]).start();
+  }, [p1, p2, p3]);
 
   return (
     <>
-      <Animated.Text style={[styles.confetti, styles.c1, s1]}>🎉</Animated.Text>
-      <Animated.Text style={[styles.confetti, styles.c2, s2]}>✨</Animated.Text>
-      <Animated.Text style={[styles.confetti, styles.c3, s3]}>🎊</Animated.Text>
+      <Animated.Text style={[styles.confetti, styles.c1, { opacity: p1.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }), transform: [{ translateY: p1.interpolate({ inputRange: [0, 1], outputRange: [0, -70] }) }, { translateX: p1.interpolate({ inputRange: [0, 1], outputRange: [0, -40] }) }] }]}>🎉</Animated.Text>
+      <Animated.Text style={[styles.confetti, styles.c2, { opacity: p2.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }), transform: [{ translateY: p2.interpolate({ inputRange: [0, 1], outputRange: [0, -85] }) }, { translateX: p2.interpolate({ inputRange: [0, 1], outputRange: [0, 20] }) }] }]}>✨</Animated.Text>
+      <Animated.Text style={[styles.confetti, styles.c3, { opacity: p3.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }), transform: [{ translateY: p3.interpolate({ inputRange: [0, 1], outputRange: [0, -65] }) }, { translateX: p3.interpolate({ inputRange: [0, 1], outputRange: [0, 55] }) }] }]}>🎊</Animated.Text>
     </>
   );
 }
@@ -85,7 +87,9 @@ export function MascotOverlay() {
   const dispatch = useDispatch();
   const event = useSelector((s) => s.app.mascotEvent);
   const soundEnabled = useSelector((s) => s.app.soundEnabled);
-  const bob = useSharedValue(0);
+  const bobY = useRef(new Animated.Value(0)).current;
+  const bobX = useRef(new Animated.Value(0)).current;
+  const overlayOpacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     setSoundEnabled(soundEnabled);
@@ -94,30 +98,43 @@ export function MascotOverlay() {
   useEffect(() => {
     if (!event) return;
 
+    overlayOpacity.setValue(0);
+    bobY.setValue(0);
+    bobX.setValue(0);
+    Animated.timing(overlayOpacity, { toValue: 1, duration: 180, useNativeDriver: true }).start();
+
     if (event.type === 'loss') {
       playXpLossSound();
-      bob.value = withSequence(
-        withTiming(-10, { duration: 80 }),
-        withTiming(10, { duration: 80 }),
-        withTiming(-8, { duration: 70 }),
-        withTiming(8, { duration: 70 }),
-        withTiming(0, { duration: 120 })
-      );
+      Animated.sequence([
+        Animated.timing(bobX, { toValue: -10, duration: 80, useNativeDriver: true }),
+        Animated.timing(bobX, { toValue: 10, duration: 80, useNativeDriver: true }),
+        Animated.timing(bobX, { toValue: -8, duration: 70, useNativeDriver: true }),
+        Animated.timing(bobX, { toValue: 8, duration: 70, useNativeDriver: true }),
+        Animated.timing(bobX, { toValue: 0, duration: 120, useNativeDriver: true })
+      ]).start();
     } else if (event.type === 'achievement') {
       playAchievementSound();
-      bob.value = withRepeat(withSequence(withSpring(-16), withSpring(0)), 4, false);
+      Animated.loop(
+        Animated.sequence([
+          Animated.spring(bobY, { toValue: -16, useNativeDriver: true }),
+          Animated.spring(bobY, { toValue: 0, useNativeDriver: true })
+        ]),
+        { iterations: 4 }
+      ).start();
     } else {
       playXpGainSound();
-      bob.value = withRepeat(withSequence(withSpring(-12), withSpring(0)), 3, false);
+      Animated.loop(
+        Animated.sequence([
+          Animated.spring(bobY, { toValue: -12, useNativeDriver: true }),
+          Animated.spring(bobY, { toValue: 0, useNativeDriver: true })
+        ]),
+        { iterations: 3 }
+      ).start();
     }
 
     const timeout = setTimeout(() => dispatch(clearMascotEvent()), 2600);
     return () => clearTimeout(timeout);
-  }, [event?.id]);
-
-  const mascotStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: bob.value }, { translateX: event?.type === 'loss' ? bob.value : 0 }]
-  }));
+  }, [bobX, bobY, dispatch, event, overlayOpacity]);
 
   if (!event) return null;
 
@@ -125,11 +142,11 @@ export function MascotOverlay() {
 
   return (
     <Modal transparent animationType="fade" visible>
-      <Animated.View entering={FadeIn} exiting={FadeOut} style={styles.backdrop}>
+      <Animated.View style={[styles.backdrop, { opacity: overlayOpacity }]}>
         <Pressable style={styles.scrim} onPress={() => dispatch(clearMascotEvent())} />
         <View style={styles.content}>
           {event.type === 'achievement' ? <ConfettiBurst /> : null}
-          <Animated.View style={mascotStyle}>
+          <Animated.View style={{ transform: [{ translateY: bobY }, { translateX: bobX }] }}>
             <BearFace mode={positive ? 'happy' : 'sad'} />
           </Animated.View>
           <Text style={styles.title}>{positive ? 'Yay! Great move!' : 'Oh no, tiny setback'}</Text>
