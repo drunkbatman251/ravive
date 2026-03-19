@@ -3,17 +3,17 @@ import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 import { pool } from '../config/db.js';
 import { env } from '../config/env.js';
-import { getUserByEmail } from '../services/userService.js';
+import { getUserByLoginId } from '../services/userService.js';
 
 const registerSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  password: z.string().min(6)
+  loginId: z.string().trim().min(1),
+  password: z.string().min(1),
+  name: z.string().trim().min(1).optional()
 });
 
 const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6)
+  loginId: z.string().trim().min(1),
+  password: z.string().min(1)
 });
 
 function tokenFor(user) {
@@ -29,16 +29,25 @@ function friendCodeFromId(id) {
 
 export async function register(req, res, next) {
   try {
-    const payload = registerSchema.parse(req.body);
-    const existing = await getUserByEmail(payload.email);
-    if (existing) return res.status(409).json({ message: 'Email already in use' });
+    const parsed = registerSchema.safeParse({
+      loginId: req.body.loginId || req.body.email,
+      password: req.body.password,
+      name: req.body.name
+    });
+    if (!parsed.success) {
+      return res.status(400).json({ message: 'Login ID and password are required' });
+    }
+
+    const payload = parsed.data;
+    const existing = await getUserByLoginId(payload.loginId);
+    if (existing) return res.status(409).json({ message: 'Login ID already in use' });
 
     const passwordHash = await bcrypt.hash(payload.password, 10);
     const result = await pool.query(
       `INSERT INTO users (name, email, password_hash)
        VALUES ($1,$2,$3)
        RETURNING id, name, email, level, total_xp, life_score, health, strength, focus, discipline, knowledge`,
-      [payload.name, payload.email, passwordHash]
+      [payload.name || payload.loginId, payload.loginId, passwordHash]
     );
 
     const user = result.rows[0];
@@ -53,8 +62,16 @@ export async function register(req, res, next) {
 
 export async function login(req, res, next) {
   try {
-    const payload = loginSchema.parse(req.body);
-    const user = await getUserByEmail(payload.email);
+    const parsed = loginSchema.safeParse({
+      loginId: req.body.loginId || req.body.email,
+      password: req.body.password
+    });
+    if (!parsed.success) {
+      return res.status(400).json({ message: 'Login ID and password are required' });
+    }
+
+    const payload = parsed.data;
+    const user = await getUserByLoginId(payload.loginId);
     if (!user || !user.password_hash) return res.status(401).json({ message: 'Invalid credentials' });
 
     const valid = await bcrypt.compare(payload.password, user.password_hash);

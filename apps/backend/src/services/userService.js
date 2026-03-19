@@ -131,6 +131,11 @@ export async function getUserByEmail(email) {
   return result.rows[0] || null;
 }
 
+export async function getUserByLoginId(loginId) {
+  const result = await pool.query('SELECT * FROM users WHERE email = $1', [loginId]);
+  return result.rows[0] || null;
+}
+
 export async function getUserById(userId) {
   const result = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
   return result.rows[0] || null;

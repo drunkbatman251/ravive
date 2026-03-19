@@ -21,7 +21,7 @@ const baseURL = resolveApiUrl();
 
 export const api = axios.create({
   baseURL,
-  timeout: 10000
+  timeout: 25000
 });
 
 let authToken = '';
